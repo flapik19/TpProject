@@ -16,7 +16,7 @@ class mainWindow(customtkinter.CTk):
                                                 text = "Tap To Start",
                                                 text_color="#BCBCBC",
                                                 fg_color="#4D4D4D",
-                                                font=("Arial", 28, "bold"),
+                                                font=("Helvetica", 28, "bold"),
                                                 border_spacing=15,
                                                 corner_radius=50)
         self.button.grid(row = 1, column = 1)
