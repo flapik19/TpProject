@@ -1,5 +1,6 @@
 import tkinter
 import customtkinter
+from src.ui.logInput import logInput
 
 class logOrRegistWindow(customtkinter.CTk):
     def __init__(self, parent):
@@ -44,12 +45,18 @@ class logOrRegistWindow(customtkinter.CTk):
             fg_color="#4D4D4D",
             corner_radius=10,
             width=200,
-            height=50
+            height=50,
+            command=self.openWindowInputLogin()
         )
         self.buttonRegist.grid(row=9, column=5)
 
         self.protocol("WM_DELETE_WINDOW", self.on_close)
 
+
+    def openWindowInputLogin(self):
+        self.withdraw()
+        openwin = logInput(self)
+        openwin.deiconify()
 
     def center_window(self, width, height):
         screen_width = self.winfo_screenwidth()
