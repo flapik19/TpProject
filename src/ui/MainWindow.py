@@ -25,3 +25,6 @@ class mainWindow(customtkinter.CTk):
     def start(self):
         self.mainloop()
 
+    if __name__ == "__main__":
+        app = MainWindow()
+        app.start()
