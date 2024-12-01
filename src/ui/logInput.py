@@ -30,7 +30,7 @@ class logInput(customtkinter.CTk):
                                                         font=("Helvetica", 24, "bold"),
                                                         text_color="#FFFFFF",
                                                         fg_color="#4D4D4D",
-                                                        corner_radius=10,
+                                                            corner_radius=10,
                                                         width=200,
                                                         height=50)
         self.buttonContinue.grid(row = 15, column = 5)

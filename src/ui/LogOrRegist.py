@@ -46,17 +46,12 @@ class logOrRegistWindow(customtkinter.CTk):
             corner_radius=10,
             width=200,
             height=50,
-            command=self.openWindowInputLogin()
         )
         self.buttonRegist.grid(row=9, column=5)
 
         self.protocol("WM_DELETE_WINDOW", self.on_close)
 
 
-    def openWindowInputLogin(self):
-        self.withdraw()
-        openwin = logInput(self)
-        openwin.deiconify()
 
     def center_window(self, width, height):
         screen_width = self.winfo_screenwidth()
