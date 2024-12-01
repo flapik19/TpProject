@@ -1,5 +1,5 @@
 from src.ui.MainWindow import mainWindow
-from src.ui.LogOrRegist import logOrRegistWindow
 
-app = logOrRegistWindow()
-app.start()
+if __name__ == "__main__":
+    app = mainWindow()
+    app.mainloop()
