@@ -1,7 +1,4 @@
-import tkinter
-import customtkinter
+from src.ui.MainWindow import mainWindow
 
-app = customtkinter.CTk()
-app.geometry("800x600")
-
-app.mainloop()
+app = mainWindow()
+app.start()
