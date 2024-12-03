@@ -1,29 +1,109 @@
 import customtkinter as ctk
-import tkinter
+from PIL import Image
 
-ctk.set_appearance_mode("System")
-ctk.set_default_color_theme("blue")
+class Password(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+        self.title("banyk's branch in prime yea?")
+        self.geometry("800x600")
+        self.resizable(False, False)
+        self.center_window(800, 600)
 
-app = ctk.CTk()
-app.geometry("400x240")
-app.title("banyk's branch in prime yea?")
+        # Флаг для состояния отображения пароля
+        self.password_visible = False
 
-label_password = ctk.CTkLabel(app, text="Пароль", fg_color="transparent")
-label_password.place(relx=0.2, rely=0.1, anchor=ctk.CENTER)
-label_surname = ctk.CTkLabel(app, text="Пароль", fg_color="transparent")
-label_surname.place(relx=0.2, rely=0.3, anchor=ctk.CENTER)
+        # Загрузка иконок глаз (открытого и закрытого)
+        self.eye_open_icon = ctk.CTkImage(Image.open("eye_open.png"), size=(24, 24))
+        self.eye_closed_icon = ctk.CTkImage(Image.open("eye_closed.png"), size=(24, 24))
 
-entry_name = ctk.CTkEntry(app, placeholder_text="Введите пароль")
-entry_name.place(relx=0.5, rely=0.1, anchor=ctk.CENTER)
-entry_surname = ctk.CTkEntry(app, placeholder_text="Подтвердите пароль")
-entry_surname.place(relx=0.5, rely=0.3, anchor=ctk.CENTER)
+        # Настройка сетки
+        for i in range(11):
+            self.grid_columnconfigure(i, weight=1)
+        for i in range(20):
+            self.grid_rowconfigure(i, weight=1)
 
-label_result = ctk.CTkLabel(app, text="turtle", fg_color="transparent")
-label_result.place(relx=0.5, rely=0.87, anchor=ctk.CENTER)
+         # Метки
+        self.label_password = ctk.CTkLabel(self, text="Пароль", font=("Helvetica", 42, "bold"))
+        self.label_password.grid(row=5, column=4, columnspan=3)
 
-def button_event():
-    label_result.configure(text=f"NAME : {entry_name.get()}\n SURNAME: {entry_surname.get()}")
-button = ctk.CTkButton(app, text="Generate", command=button_event)
-button.place(relx=0.5, rely=0.68, anchor=ctk.CENTER)
+        self.label_confirmation = ctk.CTkLabel(self, text="Подтверждение пароля", font=("Helvetica", 42, "bold"))
+        self.label_confirmation.grid(row=7, column=4, columnspan=3)
 
-app.mainloop()
+        # Поля ввода
+        self.entry_password = ctk.CTkEntry(self, placeholder_text="Введите пароль", font=("Helvetica", 28), width=320, show="*")
+        self.entry_password.grid(row=6, column=4, columnspan=2, pady=5, sticky="e")
+
+        self.entry_confirmation = ctk.CTkEntry(self, placeholder_text="Подтвердите пароль", font=("Helvetica", 28), width=320, show="*")
+        self.entry_confirmation.grid(row=8, column=4, columnspan=2, pady=5, sticky="e")
+
+        # Кнопки-глазки для переключения видимости паролей
+        self.toggle_password_button = ctk.CTkButton(self, image=self.eye_closed_icon, command=self.toggle_password_visibility,
+                                                    width=40, height=40, text="", fg_color="transparent")
+        self.toggle_password_button.grid(row=6, column=6, sticky="w", padx=5)
+
+        self.toggle_confirmation_button = ctk.CTkButton(self, image=self.eye_closed_icon, command=self.toggle_confirmation_visibility,
+                                                        width=40, height=40, text="", fg_color="transparent")
+        self.toggle_confirmation_button.grid(row=8, column=6, sticky="w", padx=5)
+
+        # Кнопка регистрации
+        self.button_registration = ctk.CTkButton(self, text="Регистрация", font=("Helvetica", 24, "bold"),
+                                                 command=self.button_event, fg_color="#4D4D4D",
+                                                 text_color="#FFFFFF", corner_radius=10, width=200, height=50)
+        self.button_registration.grid(row=12, column=5, pady=20)
+
+        # Метка для вывода результата
+        self.label_result = ctk.CTkLabel(self, text="", font=("Helvetica", 18, "italic"))
+        self.label_result.grid(row=15, column=4, columnspan=3, pady=10)
+
+        # Обработка закрытия окна
+        self.protocol("WM_DELETE_WINDOW", self.on_close)
+
+    def button_event(self):
+        # Логика при нажатии на кнопку
+        password = self.entry_password.get()
+        confirm_password = self.entry_confirmation.get()
+        if password and confirm_password:
+            if password == confirm_password:
+                self.label_result.configure(text="Регистрация выполнена успешно!", text_color="green")
+            else:
+                self.label_result.configure(text="Пароли не совпадают!", text_color="red")
+        else:
+            self.label_result.configure(text="Пожалуйста, заполните оба поля.", text_color="orange")
+
+    def toggle_password_visibility(self):
+        # Переключение видимости пароля
+        if self.password_visible:
+            self.entry_password.configure(show="*")
+            self.toggle_password_button.configure(image=self.eye_closed_icon)
+        else:
+            self.entry_password.configure(show="")
+            self.toggle_password_button.configure(image=self.eye_open_icon)
+        self.password_visible = not self.password_visible
+
+    def toggle_confirmation_visibility(self):
+        # Переключение видимости подтверждения пароля
+        if self.password_visible:
+            self.entry_confirmation.configure(show="*")
+            self.toggle_confirmation_button.configure(image=self.eye_closed_icon)
+        else:
+            self.entry_confirmation.configure(show="")
+            self.toggle_confirmation_button.configure(image=self.eye_open_icon)
+        self.password_visible = not self.password_visible
+
+    def center_window(self, width, height):
+        # Центрирование окна на экране
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        x = (screen_width // 2) - (width // 2)
+        y = (screen_height // 2) - (height // 2)
+        self.geometry(f"{width}x{height}+{x}+{y}")
+
+    def on_close(self):
+        # Закрытие окна
+        self.destroy()
+        self.quit()
+
+# Запуск приложения
+if __name__ == "__main__":
+    app = Password()
+    app.mainloop()
