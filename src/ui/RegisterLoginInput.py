@@ -1,7 +1,7 @@
 import customtkinter
-from src.ui.passwordInput import PasswordEntry
+from src.ui.password import Password
 
-class logInput(customtkinter.CTk):
+class RegisterLoginInput(customtkinter.CTk):
     def __init__(self,parent):
         super().__init__()
         self.title("TpProject")
@@ -15,7 +15,7 @@ class logInput(customtkinter.CTk):
             self.grid_rowconfigure(i, weight=1)
         self.protocol("WM_DELETE_WINDOW", self.on_close)
         self.labelLog = customtkinter.CTkLabel(self,
-                                               text = "Entet login",
+                                               text = "Введите логин",
                                                font=("Helvetica", 42, "bold"),
                                                text_color="#FFFFFF"
                                                )
@@ -44,9 +44,9 @@ class logInput(customtkinter.CTk):
         y = (screen_height // 2) - (height // 2)
         self.geometry(f"{width}x{height}+{x}+{y}")
 
-    def openpassword(self):
+    def openPassword(self):
         self.withdraw()
-        openPas = PasswordEntry(self)
+        openPas = Password(self)
         openPas.deiconify()
 
     def on_close(self):

@@ -2,12 +2,13 @@ import customtkinter as ctk
 from PIL import Image
 
 class PasswordEntry(ctk.CTk):
-    def __init__(self):
+    def __init__(self,parent):
         super().__init__()
         self.title("Страница входа")
         self.geometry("800x600")
         self.resizable(False, False)
         self.center_window(800, 600)
+        self.parent = parent
 
         self.password_visible = False
 
