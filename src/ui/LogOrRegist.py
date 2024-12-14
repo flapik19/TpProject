@@ -1,6 +1,7 @@
 import tkinter
 import customtkinter
 from src.ui.logInput import logInput
+from src.ui.RegisterLoginInput import RegisterLoginInput
 
 class logOrRegistWindow(customtkinter.CTk):
     def __init__(self, parent):
@@ -57,6 +58,11 @@ class logOrRegistWindow(customtkinter.CTk):
         self.withdraw()
         login = logInput(self)
         login.deiconify()
+
+    def openRegisterInput(self):
+        self.withdraw()
+        regist = RegisterLoginInput(self)
+        regist.deiconify()
 
     def center_window(self, width, height):
         screen_width = self.winfo_screenwidth()
