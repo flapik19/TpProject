@@ -1,10 +1,12 @@
 import customtkinter
+from src.ui.passwordInput import PasswordEntry
 
 class logInput(customtkinter.CTk):
-    def __init__(self):
+    def __init__(self,parent):
         super().__init__()
         self.title("TpProject")
         self.geometry("800x600")
+        self.parent = parent
         self.resizable(False, False)
         self.center_window(800, 600)
         for i in range(11):
@@ -32,7 +34,8 @@ class logInput(customtkinter.CTk):
                                                         fg_color="#4D4D4D",
                                                         corner_radius=10,
                                                         width=200,
-                                                        height=50)
+                                                        height=50,
+                                                        command=openpassword)
         self.buttonContinue.grid(row = 15, column = 5)
     def center_window(self, width, height):
         screen_width = self.winfo_screenwidth()
@@ -41,6 +44,10 @@ class logInput(customtkinter.CTk):
         y = (screen_height // 2) - (height // 2)
         self.geometry(f"{width}x{height}+{x}+{y}")
 
+    def openpassword(self):
+        self.withdraw()
+        openPas = PasswordEntry(self)
+        openPas.deiconify()
 
     def on_close(self):
         self.destroy()
