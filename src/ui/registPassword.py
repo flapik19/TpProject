@@ -13,9 +13,6 @@ class registPassword(ctk.CTk):
         # Флаг для состояния отображения пароля
         self.password_visible = False
 
-        # Загрузка иконок глаз (открытого и закрытого)
-        self.eye_open_icon = ctk.CTkImage(Image.open("eye_open.png"), size=(24, 24))
-        self.eye_closed_icon = ctk.CTkImage(Image.open("eye_closed.png"), size=(24, 24))
 
         # Настройка сетки
         for i in range(11):
@@ -38,12 +35,12 @@ class registPassword(ctk.CTk):
         self.entry_confirmation.grid(row=8, column=4, columnspan=2, pady=5, sticky="e")
 
         # Кнопки-глазки для переключения видимости паролей
-        self.toggle_password_button = ctk.CTkButton(self, image=self.eye_closed_icon, command=self.toggle_password_visibility,
-                                                    width=40, height=40, text="", fg_color="transparent")
+        self.toggle_password_button = ctk.CTkButton(self,  command=self.toggle_password_visibility,
+                                                    width=40, height=40, text="", fg_color="white")
         self.toggle_password_button.grid(row=6, column=6, sticky="w", padx=5)
 
-        self.toggle_confirmation_button = ctk.CTkButton(self, image=self.eye_closed_icon, command=self.toggle_confirmation_visibility,
-                                                        width=40, height=40, text="", fg_color="transparent")
+        self.toggle_confirmation_button = ctk.CTkButton(self, command=self.toggle_confirmation_visibility,
+                                                        width=40, height=40, text="", fg_color="white")
         self.toggle_confirmation_button.grid(row=8, column=6, sticky="w", padx=5)
 
         # Кнопка регистрации
@@ -75,10 +72,10 @@ class registPassword(ctk.CTk):
         # Переключение видимости пароля
         if self.password_visible:
             self.entry_password.configure(show="*")
-            self.toggle_password_button.configure(image=self.eye_closed_icon)
+            self.toggle_password_button.configure(fg_color = "blue")
         else:
             self.entry_password.configure(show="")
-            self.toggle_password_button.configure(image=self.eye_open_icon)
+            self.toggle_password_button.configure(fg_color = "blue")
         self.password_visible = not self.password_visible
 
     def toggle_confirmation_visibility(self):

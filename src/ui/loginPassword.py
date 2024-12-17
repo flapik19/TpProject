@@ -12,10 +12,6 @@ class loginPassword(ctk.CTk):
 
         self.password_visible = False
 
-        # Загрузка иконок глаз
-        self.eye_open_icon = ctk.CTkImage(Image.open(os.path.join(images_path, "eye_open.png")), size=(24, 24))
-        self.eye_closed_icon = ctk.CTkImage(Image.open(os.path.join(images_path, "eye_closed.png")), size=(24, 24))
-
         # Настройка сетки
         for i in range(11):
             self.grid_columnconfigure(i, weight=1)
@@ -31,8 +27,8 @@ class loginPassword(ctk.CTk):
         self.entry_password.grid(row=6, column=4, columnspan=2, pady=5, sticky="e")
 
         # Кнопка-глаз для переключения видимости пароля
-        self.toggle_password_button = ctk.CTkButton(self, image=self.eye_closed_icon, command=self.toggle_password_visibility,
-                                                    width=40, height=40, text="", fg_color="transparent")
+        self.toggle_password_button = ctk.CTkButton(self,  command=self.toggle_password_visibility,
+                                                    width=40, height=40, text="", fg_color="white")
         self.toggle_password_button.grid(row=6, column=6, sticky="w", padx=5)
 
         # Кнопка "Вход"
