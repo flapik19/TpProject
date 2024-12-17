@@ -1,42 +1,36 @@
-import customtkinter
-from src.ui.registPassword import registPassword  
+import customtkinter as ctk
+from src.ui.registPassword import registPassword
 
-class RegisterLoginInput(customtkinter.CTk):
-    def __init__(self,parent):
+class RegisterLoginInput(ctk.CTk):
+    def __init__(self, parent):
         super().__init__()
         self.title("TpProject")
         self.geometry("800x600")
-        self.parent = parent
         self.resizable(False, False)
         self.center_window(800, 600)
+        self.parent = parent
+
         for i in range(11):
             self.grid_columnconfigure(i, weight=1)
         for i in range(20):
             self.grid_rowconfigure(i, weight=1)
         self.protocol("WM_DELETE_WINDOW", self.on_close)
-        self.labelLog = customtkinter.CTkLabel(self,
-                                               text = "Введите логин",
-                                               font=("Helvetica", 42, "bold"),
-                                               text_color="#FFFFFF"
-                                               )
-        self.labelLog.grid(row = 6, column = 5)
-        self.entry = customtkinter.CTkEntry(self,
-                                            placeholder_text="Type...",
-                                            width=320,
-                                            font=("Helvetica", 28, "bold"),
-                                            text_color="#FFFFFF")
+
+        self.labelLog = ctk.CTkLabel(self, text="Введите логин",
+                                     font=("Helvetica", 42, "bold"), text_color="#FFFFFF")
+        self.labelLog.grid(row=6, column=5)
+
+        self.entry = ctk.CTkEntry(self, placeholder_text="Type...", width=320,
+                                  font=("Helvetica", 28, "bold"), text_color="#FFFFFF")
         self.entry.grid(row=7, column=5)
 
-        self.buttonContinue = customtkinter.CTkButton(self,
-                                                        text="Continue",
-                                                        font=("Helvetica", 24, "bold"),
-                                                        text_color="#FFFFFF",
-                                                        fg_color="#4D4D4D",
-                                                        corner_radius=10,
-                                                        width=200,
-                                                        height=50,
-                                                        command=self.openPassword)
-        self.buttonContinue.grid(row = 15, column = 5)
+        self.buttonContinue = ctk.CTkButton(self, text="Continue",
+                                            font=("Helvetica", 24, "bold"),
+                                            text_color="#FFFFFF", fg_color="#4D4D4D",
+                                            corner_radius=10, width=200, height=50,
+                                            command=self.openPassword)
+        self.buttonContinue.grid(row=15, column=5)
+
     def center_window(self, width, height):
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()

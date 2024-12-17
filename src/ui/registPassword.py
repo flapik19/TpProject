@@ -1,5 +1,4 @@
 import customtkinter as ctk
-from PIL import Image
 
 class registPassword(ctk.CTk):
     def __init__(self, parent):
@@ -12,7 +11,6 @@ class registPassword(ctk.CTk):
 
         # Флаг для состояния отображения пароля
         self.password_visible = False
-
 
         # Настройка сетки
         for i in range(11):
@@ -34,14 +32,18 @@ class registPassword(ctk.CTk):
         self.entry_confirmation = ctk.CTkEntry(self, placeholder_text="Подтвердите пароль", font=("Helvetica", 28), width=320, show="*")
         self.entry_confirmation.grid(row=8, column=4, columnspan=2, pady=5, sticky="e")
 
-        # Кнопки-глазки для переключения видимости паролей
-        self.toggle_password_button = ctk.CTkButton(self,  command=self.toggle_password_visibility,
-                                                    width=40, height=40, text="", fg_color="white")
+        # Кнопка для удержания видимости пароля
+        self.toggle_password_button = ctk.CTkButton(self, text="", width=40, height=40, fg_color="gray",
+                                                    corner_radius=0, command=None)
         self.toggle_password_button.grid(row=6, column=6, sticky="w", padx=5)
+        self.toggle_password_button.bind("<ButtonPress>", self.show_password)
+        self.toggle_password_button.bind("<ButtonRelease>", self.hide_password)
 
-        self.toggle_confirmation_button = ctk.CTkButton(self, command=self.toggle_confirmation_visibility,
-                                                        width=40, height=40, text="", fg_color="white")
+        self.toggle_confirmation_button = ctk.CTkButton(self, text="", width=40, height=40, fg_color="gray",
+                                                        corner_radius=0, command=None)
         self.toggle_confirmation_button.grid(row=8, column=6, sticky="w", padx=5)
+        self.toggle_confirmation_button.bind("<ButtonPress>", self.show_confirmation)
+        self.toggle_confirmation_button.bind("<ButtonRelease>", self.hide_confirmation)
 
         # Кнопка регистрации
         self.button_registration = ctk.CTkButton(self, text="Регистрация", font=("Helvetica", 24, "bold"),
@@ -68,20 +70,21 @@ class registPassword(ctk.CTk):
         else:
             self.label_result.configure(text="Пожалуйста, заполните оба поля.", text_color="orange")
 
-    def toggle_password_visibility(self):
-        # Переключение видимости пароля
-        if self.password_visible:
-            self.entry_password.configure(show="*")
-            self.toggle_password_button.configure(fg_color = "blue")
-        else:
-            self.entry_password.configure(show="")
-            self.toggle_password_button.configure(fg_color = "blue")
-        self.password_visible = not self.password_visible
+    def show_password(self, event):
+        # Показать пароль
+        self.entry_password.configure(show="")
 
-    def toggle_confirmation_visibility(self):
-        # Переключение видимости подтверждения пароля
-        if self.password_visible:
-            self.entry_confirmation
+    def hide_password(self, event):
+        # Скрыть пароль
+        self.entry_password.configure(show="*")
+
+    def show_confirmation(self, event):
+        # Показать подтверждение пароля
+        self.entry_confirmation.configure(show="")
+
+    def hide_confirmation(self, event):
+        # Скрыть подтверждение пароля
+        self.entry_confirmation.configure(show="*")
 
     def center_window(self, width, height):
         screen_width = self.winfo_screenwidth()
@@ -89,3 +92,7 @@ class registPassword(ctk.CTk):
         x = (screen_width // 2) - (width // 2)
         y = (screen_height // 2) - (height // 2)
         self.geometry(f"{width}x{height}+{x}+{y}")
+
+    def on_close(self):
+        self.destroy()
+        self.quit()
