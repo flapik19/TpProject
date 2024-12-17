@@ -1,8 +1,9 @@
 import customtkinter as ctk
+import os 
 from PIL import Image
 
-class PasswordEntry(ctk.CTk):
-    def __init__(self):
+class loginPassword(ctk.CTk):
+    def __init__(self,parent):
         super().__init__()
         self.title("Страница входа")
         self.geometry("800x600")
@@ -12,8 +13,8 @@ class PasswordEntry(ctk.CTk):
         self.password_visible = False
 
         # Загрузка иконок глаз
-        self.eye_open_icon = ctk.CTkImage(Image.open("eye_open.png"), size=(24, 24))
-        self.eye_closed_icon = ctk.CTkImage(Image.open("eye_closed.png"), size=(24, 24))
+        self.eye_open_icon = ctk.CTkImage(Image.open(os.path.join(images_path, "eye_open.png")), size=(24, 24))
+        self.eye_closed_icon = ctk.CTkImage(Image.open(os.path.join(images_path, "eye_closed.png")), size=(24, 24))
 
         # Настройка сетки
         for i in range(11):
@@ -74,8 +75,3 @@ class PasswordEntry(ctk.CTk):
     def on_close(self):
         self.destroy()
         self.quit()
-
-# Запуск приложения
-if __name__ == "__main__":
-    app = PasswordEntry()
-    app.mainloop()

@@ -1,5 +1,5 @@
 import customtkinter
-from src.ui.passwordInput import PasswordEntry
+from src.ui.loginPassword import loginPassword
 
 class logInput(customtkinter.CTk):
     def __init__(self,parent):
@@ -35,7 +35,7 @@ class logInput(customtkinter.CTk):
                                                         corner_radius=10,
                                                         width=200,
                                                         height=50,
-                                                        command=self.openpassword)
+                                                        command=self.openPassword)
         self.buttonContinue.grid(row = 15, column = 5)
     def center_window(self, width, height):
         screen_width = self.winfo_screenwidth()
@@ -44,9 +44,9 @@ class logInput(customtkinter.CTk):
         y = (screen_height // 2) - (height // 2)
         self.geometry(f"{width}x{height}+{x}+{y}")
 
-    def openpassword(self):
+    def openPassword(self):
         self.withdraw()
-        openPas = PasswordEntry(self)
+        openPas = loginPassword(self)
         openPas.deiconify()
 
     def on_close(self):

@@ -1,7 +1,7 @@
 import customtkinter
 from src.ui.LogOrRegist import logOrRegistWindow
 
-class mainWindow(customtkinter.CTk):
+class startWindow(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         self.title("TpProject")

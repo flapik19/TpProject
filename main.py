@@ -1,6 +1,5 @@
-from src.ui.MainWindow import mainWindow
+from src.ui.StartWindow import startWindow
 
 if __name__ == "__main__":
-    app = mainWindow()
+    app = startWindow()
     app.mainloop()
-

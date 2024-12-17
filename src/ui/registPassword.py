@@ -1,13 +1,14 @@
 import customtkinter as ctk
 from PIL import Image
 
-class Password(ctk.CTk):
-    def __init__(self):
+class registPassword(ctk.CTk):
+    def __init__(self, parent):
         super().__init__()
         self.title("banyk's branch in prime yea?")
         self.geometry("800x600")
         self.resizable(False, False)
         self.center_window(800, 600)
+        self.parent = parent
 
         # Флаг для состояния отображения пароля
         self.password_visible = False
@@ -22,7 +23,7 @@ class Password(ctk.CTk):
         for i in range(20):
             self.grid_rowconfigure(i, weight=1)
 
-         # Метки
+        # Метки
         self.label_password = ctk.CTkLabel(self, text="Пароль", font=("Helvetica", 42, "bold"))
         self.label_password.grid(row=5, column=4, columnspan=3)
 
@@ -83,27 +84,11 @@ class Password(ctk.CTk):
     def toggle_confirmation_visibility(self):
         # Переключение видимости подтверждения пароля
         if self.password_visible:
-            self.entry_confirmation.configure(show="*")
-            self.toggle_confirmation_button.configure(image=self.eye_closed_icon)
-        else:
-            self.entry_confirmation.configure(show="")
-            self.toggle_confirmation_button.configure(image=self.eye_open_icon)
-        self.password_visible = not self.password_visible
+            self.entry_confirmation
 
     def center_window(self, width, height):
-        # Центрирование окна на экране
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
         x = (screen_width // 2) - (width // 2)
         y = (screen_height // 2) - (height // 2)
         self.geometry(f"{width}x{height}+{x}+{y}")
-
-    def on_close(self):
-        # Закрытие окна
-        self.destroy()
-        self.quit()
-
-# Запуск приложения
-if __name__ == "__main__":
-    app = Password()
-    app.mainloop()

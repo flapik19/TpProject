@@ -48,6 +48,7 @@ class logOrRegistWindow(customtkinter.CTk):
             corner_radius=10,
             width=200,
             height=50,
+            command = self.openRegisterInput
         )
         self.buttonRegist.grid(row=9, column=5)
 
