@@ -1,10 +1,8 @@
 import customtkinter as ctk
-import os 
-from PIL import Image
 
 class loginPassword(ctk.CTk):
     def __init__(self,parent):
-        super().__init__()
+        super().__init__()  
         self.title("Страница входа")
         self.geometry("800x600")
         self.resizable(False, False)

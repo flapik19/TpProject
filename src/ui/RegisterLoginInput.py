@@ -1,4 +1,5 @@
 import customtkinter
+import json
 from src.ui.registPassword import registPassword  
 
 class RegisterLoginInput(customtkinter.CTk):
