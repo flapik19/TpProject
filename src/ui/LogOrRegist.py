@@ -20,16 +20,16 @@ class logOrRegistWindow(customtkinter.CTk):
 
         self.label = customtkinter.CTkLabel(
             self,
-            text="Вы уже зарегистрированы?",
-            font=("Helvetica", 28, "bold"),
+            text="Are you already registered?",
+            font=("Helvetica", 38, "bold"),
             text_color="#BCBCBC"
         )
         self.label.grid(row=8, column=4, columnspan=2)
 
         self.buttonLog = customtkinter.CTkButton(
             self,
-            text="Войти",
-            font=("Helvetica", 16, "bold"),
+            text="Login",
+            font=("Helvetica", 24, "bold"),
             text_color="#FFFFFF",
             fg_color="#4D4D4D",
             corner_radius=10,
@@ -41,8 +41,8 @@ class logOrRegistWindow(customtkinter.CTk):
 
         self.buttonRegist = customtkinter.CTkButton(
             self,
-            text="Регистрация",
-            font=("Helvetica", 16, "bold"),
+            text="Registration",
+            font=("Helvetica", 24, "bold"),
             text_color="#FFFFFF",
             fg_color="#4D4D4D",
             corner_radius=10,

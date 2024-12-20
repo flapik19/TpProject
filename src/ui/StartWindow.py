@@ -20,7 +20,7 @@ class startWindow(customtkinter.CTk):
             text="Tap To Start",
             text_color="#BCBCBC",
             fg_color="#4D4D4D",
-            font=("Helvetica", 28, "bold"),
+            font=("Helvetica", 38, "bold"),
             border_spacing=15,
             corner_radius=50,
             command=self.open_log_or_regist_window
