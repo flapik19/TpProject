@@ -1,5 +1,5 @@
 import customtkinter
-from src.ui.LogOrRegist import logOrRegistWindow
+from src.LogOrRegist import logOrRegistWindow
 
 class startWindow(customtkinter.CTk):
     def __init__(self):

@@ -1,7 +1,8 @@
 import customtkinter
-from src.ui.loginPassword import loginPassword
+import json
+from src.registPassword import registPassword  
 
-class logInput(customtkinter.CTk):
+class RegisterLoginInput(customtkinter.CTk):
     def __init__(self,parent):
         super().__init__()
         self.title("TpProject")
@@ -37,6 +38,7 @@ class logInput(customtkinter.CTk):
                                                         height=50,
                                                         command=self.openPassword)
         self.buttonContinue.grid(row = 10, column = 5)
+
     def center_window(self, width, height):
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
@@ -45,8 +47,12 @@ class logInput(customtkinter.CTk):
         self.geometry(f"{width}x{height}+{x}+{y}")
 
     def openPassword(self):
+        username = self.entry.get()
+        if not username.strip(): 
+            self.labelLog.configure(text = "Username cannot be empty", text_color = "red")
+            return
         self.withdraw()
-        openPas = loginPassword(self)
+        openPas = registPassword(self)
         openPas.deiconify()
 
     def on_close(self):

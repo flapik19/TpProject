@@ -1,13 +1,17 @@
 import customtkinter
+from src.user_data import addUser
+from src.logInput import logInput
 
 class ChooseRoleWindow(customtkinter.CTk):
-    def __init__(self, parent):
+    def __init__(self, parent, username, password):
         super().__init__()
         self.title("Choose Role")
         self.geometry("800x600")
         self.resizable(False, False)
         self.center_window(800, 600)
         self.parent = parent
+        self.username = username
+        self.password = password
 
         for i in range(30):
             self.grid_columnconfigure(i, weight=1)
@@ -27,7 +31,7 @@ class ChooseRoleWindow(customtkinter.CTk):
         self.radio_student = customtkinter.CTkRadioButton(
             self,
             text="Student",
-            font = ("Helvetica", 28, "bold"),
+            font=("Helvetica", 28, "bold"),
             variable=self.role_var,
             value="Student"
         )
@@ -36,7 +40,7 @@ class ChooseRoleWindow(customtkinter.CTk):
         self.radio_directorate = customtkinter.CTkRadioButton(
             self,
             text="Directorate",
-            font = ("Helvetica", 28, "bold"),
+            font=("Helvetica", 28, "bold"),
             variable=self.role_var,
             value="Directorate"
         )
@@ -45,7 +49,7 @@ class ChooseRoleWindow(customtkinter.CTk):
         self.radio_teacher = customtkinter.CTkRadioButton(
             self,
             text="Teacher",
-            font = ("Helvetica", 28, "bold"),
+            font=("Helvetica", 28, "bold"),
             variable=self.role_var,
             value="Teacher"
         )
@@ -57,15 +61,26 @@ class ChooseRoleWindow(customtkinter.CTk):
             width=200,
             height=50,
             corner_radius=10,
-            font = ("Helvetica", 22, "bold"),
+            font=("Helvetica", 22, "bold"),
             command=self.confirm_selection
         )
         self.confirm_button.grid(row=11, column=14)
 
     def confirm_selection(self):
         selected_role = self.role_var.get()
-        print(f"Selected role: {selected_role}")
-        self.destroy()
+        if selected_role == "None":
+            print("Please select a role.")
+            return
+        
+        if addUser(self.username, self.password, selected_role):
+            print(f"User {self.username} successfully registered with role {selected_role}.")
+            self.withdraw()
+            openLogin = logInput(self)
+            openLogin.deiconify()
+        else:
+            print(f"Username {self.username} is already taken. Try another.")
+
+        
 
     def center_window(self, width, height):
         screen_width = self.winfo_screenwidth()
@@ -73,7 +88,3 @@ class ChooseRoleWindow(customtkinter.CTk):
         x = (screen_width // 2) - (width // 2)
         y = (screen_height // 2) - (height // 2)
         self.geometry(f"{width}x{height}+{x}+{y}")
-
-    def on_close(self):
-        self.destroy()
-        self.quit()

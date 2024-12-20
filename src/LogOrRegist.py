@@ -1,7 +1,7 @@
 import tkinter
 import customtkinter
-from src.ui.logInput import logInput
-from src.ui.RegisterLoginInput import RegisterLoginInput
+from src.logInput import logInput
+from src.RegisterLoginInput import RegisterLoginInput
 
 class logOrRegistWindow(customtkinter.CTk):
     def __init__(self, parent):

@@ -1,4 +1,4 @@
-from src.ui.StartWindow import startWindow
+from src.StartWindow import startWindow
 
 if __name__ == "__main__":
     

@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from src.ui.chooseRole import ChooseRoleWindow
+from src.chooseRole import ChooseRoleWindow
 
 class registPassword(ctk.CTk):
     def __init__(self, parent):
@@ -51,8 +51,13 @@ class registPassword(ctk.CTk):
         self.password_visible = not self.password_visible
 
     def ButtonEvent(self):
+        password = self.entry_password.get()
+        if not password:
+            self.label_result.configure(text = "Password cannot be empty", text_color = "red")
+            return
+        username = self.parent.entry.get()
         self.withdraw()
-        openRole = ChooseRoleWindow(self)
+        openRole = ChooseRoleWindow(self, username, password)
         openRole.deiconify()
 
     def center_window(self, width, height):

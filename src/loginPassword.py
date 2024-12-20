@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from src.ui.mainPage import MainPage
+from src.mainPage import MainPage
 
 class loginPassword(ctk.CTk):
     def __init__(self,parent):
